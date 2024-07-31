@@ -16,8 +16,10 @@ with open(sys.argv[1],"r") as file:
         line_split=i.split()
         if line_split[0]=="v":
             points.append([float(line_split[i])*scalar for i in range(1,len(line_split))])
+            # For some reason the x axis gets flipped. This should fix it.
+            points[-1][0] = -points[-1][0]
         elif line_split[0]=="f":
-            # Minus one, since according to wikipeadia, the .obj indexes start at 1, not 0
+            # Minus one, since according to wikipedia, the .obj indexes start at 1, not 0
             faces.append([int(line_split[i].split("/")[0])-1 for i in range(1,len(line_split))])
 
 # Initialize point groups to unique numbers
